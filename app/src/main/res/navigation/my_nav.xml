@@ -25,7 +25,11 @@
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.mvp.recipix.ui.fragments.favorites.FavoriteRecipesFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorite_recipes" />
+        tools:layout="@layout/fragment_favorite_recipes" >
+        <action
+            android:id="@+id/action_favoriteRecipesFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
     <dialog
         android:id="@+id/recipesBottomSheet"
         android:name="com.mvp.recipix.ui.fragments.recipes.RecipesBottomSheet"

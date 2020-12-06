@@ -1,4 +1,4 @@
-package com.mvp.recipix.data.database
+package com.mvp.recipix.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

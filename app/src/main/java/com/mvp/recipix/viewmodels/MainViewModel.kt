@@ -7,7 +7,8 @@ import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.mvp.recipix.data.Repository
-import com.mvp.recipix.data.database.RecipesEntity
+import com.mvp.recipix.data.database.entities.FavoritesEntity
+import com.mvp.recipix.data.database.entities.RecipesEntity
 import com.mvp.recipix.data.util.NetworkResult
 import com.mvp.recipix.models.FoodRecipe
 import kotlinx.coroutines.Dispatchers
@@ -21,12 +22,31 @@ class MainViewModel @ViewModelInject constructor(
 ) : AndroidViewModel(application) {
 
     /** ROOM DATABASE **/
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
             viewModelScope.launch(Dispatchers.IO) {
                 repository.local.insertRecipes(recipesEntity)
             }
+
+    fun insertFavoriteRecipe(favoritesEntity: FavoritesEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoritesEntity)
+        }
+    }
+
+    fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoritesEntity(favoritesEntity)
+        }
+    }
+
+    fun deleteAllFavoriteRecipes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
+        }
+    }
 
     /** RETROFIT **/
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
@@ -73,7 +93,8 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
-        val recipesEntity = RecipesEntity(foodRecipe)
+        val recipesEntity =
+            RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
     }
 

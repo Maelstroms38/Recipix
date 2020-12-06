@@ -4,6 +4,7 @@ package com.mvp.recipix.data.util
 class Constants {
     companion object {
        const val BASE_URL = "https://api.spoonacular.com"
+       const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"
        const val API_KEY = "34071e3d034f4f789375200fc5917128"
 
        // API Query Keys
@@ -18,6 +19,7 @@ class Constants {
         // ROOM Database
         const val DATABASE_NAME = "recipes_database"
         const val RECIPES_TABLE = "recipes_table"
+        const val FAVORITES_TABLE = "favorites_table"
 
         // Bottom Sheet preferences
         const val DEFAULT_MEAL_TYPE = "main course"

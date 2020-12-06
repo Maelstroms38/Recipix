@@ -2,7 +2,7 @@ package com.mvp.recipix.bindingadapters
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import com.mvp.recipix.data.database.RecipesEntity
+import com.mvp.recipix.data.database.entities.RecipesEntity
 import com.mvp.recipix.data.util.NetworkResult
 import com.mvp.recipix.models.FoodRecipe
 
